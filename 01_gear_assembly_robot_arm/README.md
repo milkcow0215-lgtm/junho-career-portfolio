@@ -1,50 +1,51 @@
-# 🤖 투명 사출물 결함 검수 및 로봇 자동화 공정 시스템 (TEAM 더듬이)
+# 🤖 토크 센서와 3D Point Cloud를 활용한 능동형 투명 사출물 표면 탐색 로봇
+> **TEAM 더듬이** | 참여 인원: 5명
 
-기존 비전 센서의 한계(빛 반사, 굴절, 투명도)를 극복하기 위해 물리적 접촉 스캔(Haptic/Dome Surface Scanning) 방식을 도입한 투명 재질 전용 자동 검수 솔루션입니다. 6축 협동 로봇(Doosan Robotics M0609)의 토크 센서 데이터를 실시간으로 분석하여 미세한 표면 결함(크랙)을 감지하고, 시료의 이송, 압입, 검사 및 분류 공정을 자동화합니다.
+기존 비전 카메라 센서가 가진 투명 재질 사출물의 빛 반사 및 굴절로 인한 오탐률 한계를 극복하기 위해, 두산 협동 로봇(M0609)의 내장 토크 센서를 활용해 물리적으로 표면을 스캔하고 결함을 감지해 내는 비전-프리(Vision-Free) 자동 검수 시스템입니다. 시료의 이송, 압입, 검사 및 분류 공정을 자동화합니다.
 
 ---
 
 ## 1. 프로젝트 개요 (Project Overview)
 * **개발 기간**: 2026년 04월 28일 ~ 2026년 05월 13일 (2주)
-* **개발 목적**: 기존 비전 카메라 센서가 가진 투명 재질 사출물의 빛 반사 및 굴절로 인한 오탐률 한계를 극복하기 위해, 두산 협동 로봇(M0609)의 내장 토크 센서를 활용해 물리적으로 표면을 스캔하고 결함을 감지해 내는 비전-프리(Vision-Free) 자동 검수 시스템을 구축한 프로젝트.
-* **주요 역할**: ROS2 패키지 설계 및 마스터 제어 노드 구현, 실시간 외력 토크 기반 불량 분석 엔진 및 3D 오차 리포팅 웹 파이프라인 개발, ROS2-Firebase 양방향 통신 브리지 구축.
+* **담당 역할**: 
+  * **PM**: 프로젝트 통합 관리 및 전체 일정 조율 (S/W 및 H/W 태스크 분배 및 시스템 통합 리드)
+  * **임베디드 및 공정 제어**: Arduino 및 초음파 센서 기반 컨베이어 제어, ROS2 Task Controller 비동기 통신 브릿지 구현
+  * **기구부 설계**: 사출물 고정 틀, 바깥 틀, 그리퍼 툴 및 꽂이 등 시스템 전체 기구부 3D 모델링 및 제작
 
 ---
 
 ## 2. 사용 기술 스택 (Tech Stack)
-* **Robot & Controller**: Doosan Robotics M0609 (6축 협동 로봇), Doosan Controller (DRL 지원)
-* **Middleware**: ROS2 (Foxy / Humble), FastDDS
-* **Languages**: Python 3 (FastAPI, NumPy, SciPy), C++ (Arduino IDE)
-* **Databases & Cloud**: Firebase Realtime Database (실시간 상태 동기화), Firebase Cloud Storage (HTML 불량 리포트 적재)
-* **Robotics Math**: DH Parameter 기반 Forward Kinematics (순운동학 구현), Cubic Spline (3차원 스플라인 보간)
-* **Hardware & Components**: Arduino (컨베이어 센서 브리지), Robotiq 2F-85 Gripper, FLIR Camera
-* **Web UI**: HTML5/CSS3/JavaScript, Plotly.js (3D 인터랙티브 그래프 시각화)
+* **Hardware/Sensors**: Doosan M0609 (6축 협동로봇, 토크 센서), Arduino, 초음파 센서(HC-SR04), 컨베이어 벨트, 3D 프린터(커스텀 툴)
+* **Software/Tools**: ROS2, DSR_ROBOT2, Python, Firebase (RTDB, Storage), Plotly.js, OpenCV
+* **Robotics Math**: DH Parameter 기반 Forward Kinematics, Cubic Spline (3차원 스플라인 보간)
+
+---
 
 ## 3. 디렉토리 및 파일 구조 (Directory Structure)
 
 ```text
 C:\career-portfolio\01_gear_assembly_robot_arm/
-├── README.md                           # 👈 현재 파일 (프로젝트 설명서)
+├── README.md                          # 👈 현재 파일
 └── src/
-    └── cobot1/                         # 메인 ROS2 패키지
-        ├── package.xml                 # ROS2 패키지 설정 파일
-        ├── setup.py                    # 파이썬 배포/설치 설정 파일
-        ├── setup.cfg                   # ROS2 빌드 환경 파일
+    └── cobot1/                        # 메인 ROS2 패키지
+        ├── package.xml                # ROS2 패키지 설정 파일
+        ├── setup.py                   # 파이썬 배포/설치 설정 파일
+        ├── setup.cfg                  # ROS2 빌드 환경 파일
         │
         ├── arduino/
-        │   └── FINAL.ino                # 컨베이어 센서 및 모터 제어용 아두이노 소스 코드
+        │   └── FINAL.ino              # 컨베이어 센서 및 모터 제어용 아두이노 소스 코드
         │
         ├── control/
-        │   ├── total_control.py         # 공정 시퀀스 제어 및 마스터 모션 노드
-        │   └── torque_monitor_09.py     # 실시간 FK 연산, 토크 모니터링 및 결함 검출 엔진
+        │   ├── total_control.py       # 공정 시퀀스 제어 및 마스터 모션 노드
+        │   └── torque_monitor_09.py   # 실시간 FK 연산, 토크 모니터링 및 결함 검출 엔진
         │
         ├── gui/
         │   ├── 05_01_ros_firebase_bridge.py # ROS2-Firebase Realtime DB 양방향 통신 브리지
-        │   ├── firebase_04.py           # Firebase 리포트 매니저 모듈
-        │   ├── 10_index.html            # 모니터링 웹 대시보드 메인 페이지
-        │   └── 3d_view_09.html          # Plotly.js 연동 3D 궤적 리포트 템플릿
+        │   ├── firebase_04.py         # Firebase 리포트 매니저 모듈
+        │   ├── 10_index.html          # 모니터링 웹 대시보드 메인 페이지
+        │   └── 3d_view_09.html        # Plotly.js 연동 3D 궤적 리포트 템플릿
         │
-        └── test/                        # ROS2 패키지 정적 테스트 코드 (PEP8, PEP257 등)
+        └── test/                      # ROS2 패키지 정적 테스트 코드
 ```
 
 ---
@@ -60,95 +61,41 @@ C:\career-portfolio\01_gear_assembly_robot_arm/
 ## 5. 핵심 기능 및 구현 내용 (Core Features)
 
 ### ① 실시간 관절 외력 감지 및 3D 크랙 검출 (`torque_monitor_09.py`)
-* **순운동학 (Forward Kinematics) 구현**: M0609의 DH 파라미터를 기반으로 자체 FK 수학 모델 라이브러리를 작성하여, 조인트 각도 피드백 토픽(`/dsr01/joint_states`)으로부터 실시간 TCP의 3D 공간 좌표 `[X, Y, Z]`를 20Hz 주기로 정밀 계산.
-* **외력 토크 실시간 센싱**: `GetExternalTorque` 서비스 클라이언트를 비동기로 호출하여, 모션 구동 중의 가상 마찰력을 배제한 순수 외력 토크 스파이크를 모니터링. 토크 임계치(1.7 Nm) 초과 시 표면 크랙 발생 구간으로 실시간 플래깅.
+* **순운동학 (Forward Kinematics) 구현**: M0609의 DH 파라미터를 기반으로 자체 FK 수학 모델 라이브러리를 작성하여, 조인트 각도 피드백 토픽(`/dsr01/joint_states`)으로부터 실시간 TCP의 3D 공간 좌표 `[X, Y, Z]`를 20Hz 주기로 계산.
+* **외력 토크 실시간 센싱**: `GetExternalTorque` 서비스 클라이언트를 비동기로 호출하여 순수 외력 토크 스파이크를 모니터링. 토크 임계치(1.7 Nm) 초과 시 표면 크랙 발생 구간으로 실시간 플래깅.
 
 ### ② 스플라인 보간 기반 형상 편차 분석 및 HTML 리포트 자동 생성
 * **Cubic Spline 궤적 분석**: 크랙 감지 시점의 전후 윈도우 프레임 데이터를 추출하고, 정상 궤적 데이터 점들을 대상으로 `SciPy` 라이브러리의 3차원 스플라인 보간(`CubicSpline`)을 적용하여 설계 대비 미세 변형 편차(`e_max`)를 산출. (허용 오차율 기준 5.0% 초과 시 최종 불량 판정)
-* **Plotly.js 연동 3D 리포팅**: 정상 궤적(Blue)과 크랙 검출 궤적(Red)을 3D 점군 데이터로 시각화하는 인터랙티브 **Plotly.js 기반 HTML 리포트**를 자동 생성하여 Firebase Cloud Storage에 업로드하고, URL 메타데이터를 Realtime DB에 적재하여 작업자 대시보드에 팝업을 즉시 트리거.
+* **Plotly.js 연동 3D 리포팅**: 정상 궤적(Blue)과 크랙 검출 궤적(Red)을 3D 점군 데이터로 시각화하는 인터랙티브 Plotly.js 기반 HTML 리포트를 자동 생성하여 Firebase Cloud Storage에 업로드하고, URL 메타데이터를 Realtime DB에 적재하여 작업자 대시보드에 팝업을 즉시 트리거.
 
-### ③ 태스크 순응 제어 (Task Compliance Control) 및 3D 돔 스캐닝 궤적 제어 (`total_control.py`)
-* **3D 반구 스캔 궤적**: 반구형 대상 물체의 표면을 따라 face-on 방향을 유지하며 회전하는 10개 층(Layers)의 3D 원호 보간 경로 생성 알고리즘 구현.
-* **컴플라이언스 모드**: DRL(Doosan Robot Language) 스크립트 기반으로 로봇의 축별 강성(Stiffness)을 `[500, 500, 3000, 300, 300, 300]`으로 낮추는 순응 제어(`task_compliance_ctrl`)를 적용하여 급격한 접촉 충격을 방지하고 균일한 밀착 스캔 유지.
-
-### ④ ROS2 ↔ Firebase Realtime DB 양방향 통신 브리지 구축 (`ros_firebase_bridge.py`)
-* **상태 동기화**: 로봇의 실시간 조인트 각도(`robot/joints`), 3D 태스크 좌표(`robot/task`), 통계 데이터(합격/불량 수량 및 합격률), 공정 진행 상태 코드를 0.2초 주기로 Firebase DB에 전송.
-* **웹 원격 제어**: 웹 브라우저에서 발생하는 비상정지(E-Stop), 수동 조그(JOG), 그리퍼 동작, DRL 스크립트 호출 명령을 감지하여 ROS2 서비스로 변환·실행하는 비동기 이벤트 리스너 구현.
-
-### ⑤ 보호정지(Protective Stop) 원격 복구 및 H2R (Human-to-Robot) 비상 해제
-* **원격 안전 모드 제어**: 충돌 또는 과부하로 보호정지(State 5) 상태가 될 때, 제어기를 원격으로 복구 모드(`SAFETY_MODE_RECOVERY`)로 전환.
-* **H2R 액션 제어**: 복구 모드 내에서 안전 저속 조건으로 `MovejH2r` 및 `MovelH2r` 액션 서버를 제어하여 로봇을 장애물로부터 안전하게 이탈시킨 후, 보호정지를 해제(`SetRobotControl(2)`)하여 정상 자율주행 모드로 원격 복귀시키는 오프라인 복구 파이프라인 구현.
+### ③ 임베디드 및 시작 공정 제어 로직 설계
+* **비동기 통신 브릿지**: Arduino와 초음파 센서를 활용해 컨베이어 벨트의 동작을 제어하고, ROS2 환경의 Task Controller와 통신하여 물체 도착 시 로봇에 작업 개시 명령을 내리는 파이프라인 구축.
+* **하드웨어 기구부 레이아웃**: 로봇의 이동 반경 and 안정성을 고려하여 사출물 고정 틀, 바깥 틀, 그리퍼 툴 및 꽂이 등 전체 시스템의 기구부를 3D 모델링하고 직접 제작.
 
 ---
 
-## 6. 설치 및 구동 방법 (Installation & Execution)
+## 6. 엔지니어링 이슈 및 Troubleshooting (트러블슈팅)
 
-### 의존성 설치
-본 프로젝트는 Python 3.10 및 ROS 2 Humble 환경을 기준으로 동작하며, 구동을 위해 다음 라이브러리가 필요합니다.
-```bash
-pip install firebase-admin numpy scipy plotly PySide6
-```
+### 🚨 [이슈 1] 곡면 궤적 왜곡 및 표면 밀착 불균형 문제
+* **현상**: 평면에서 사용하던 고정 Z-오프셋 방식을 반구 형태의 곡면 사출물에 적용하자, 표면 각도 변화에 따라 수직 항력 불균형이 발생하며 궤적이 왜곡되거나 로봇이 허공을 맴도는 문제가 발생함.
+* **원인 분석**: 단순 위치 기반(Position-based) 제어로 인해 곡면의 구배 변화에 유연하게 대응하지 못하고 강성이 과도하게 유지됨.
+* **해결 방법**: 위치 기반 제어에서 토크 센서 기반 역학 제어로 전환하고, 컴플라이언스(순응) 제어 알고리즘을 적용하여 X축과 Y축 기준 회전 강성을 `[500, 500, 3000, 300, 300, 300]`으로 대폭 낮춤.
+* **결과**: 로봇 툴이 실제 돔 표면 곡률에 밀착하여 이동 반경 내에서 미세한 크랙의 충격(Spike)만 정밀하게 감지하도록 최적화 완료.
 
-### 시스템 빌드
-```bash
-# 워크스페이스 예시
-mkdir -p ~/cobot_ws/src
-cd ~/cobot_ws/src
-# 본 패키지(cobot1) 복사 후
-cd ~/cobot_ws
-colcon build --symlink-install
-source install/setup.bash
-```
+### 🚨 [이슈 2] Firebase HTTP 통신 지연으로 인한 메인 제어 루프 병목
+* **현상**: 로봇 제어망과 웹 3D 모니터링 간의 Firebase HTTP 통신 과정에서 최대 200ms의 지연이 발생하여 로봇 제어 루프(ROS2) 전체의 실시간성에 감점 요인 발생.
+* **원인 분석**: 단일 스레드 구조에서 메시지 수신과 동시에 메인 로직이 동기적으로 실행되어 통신 대기 시간이 루프 점유를 유발함.
+* **해결 방법**: 메시지 수신 즉시 로직을 실행하지 않고 플래그(`trigger_start`)만 설정하는 비동기 신호 처리와, 5개의 스레드를 제어하는 큐(Queue) 기반 비동기 멀티스레딩 아키텍처를 도입하여 제어 노드와 전송 스레드를 완전히 분리함.
+* **결과**: 메인 루프의 통신 지연을 0%로 줄이고 실시간성 및 제어 안정성을 확보함.
 
-### 분산 시스템 구동 (3개 PC 구성 예시)
-본 프로젝트는 모듈 독립성을 위해 마이크로서비스 아키텍처 형태로 각 터미널에서 개별 노드를 구동합니다.
-
-#### **<PC 1: Main Control & Safety>**
-```bash
-# Terminal 1: 두산 로봇 컨트롤러 연결 및 RViz 기동
-ros2 launch dsr_bringup2 dsr_bringup2_rviz.launch.py mode:=real host:=192.168.1.100 port:=12345 model:=m0609
-
-# Terminal 2: 공정 시퀀스 제어 및 마스터 모션 실행
-python3 control/total_control.py
-
-# Terminal 3: 관절 토크 감지 및 스플라인 분석 엔진 실행
-python3 control/torque_monitor_09.py
-```
-
-#### **<PC 2: Firebase Integration>**
-```bash
-# Terminal 1: ROS2-Firebase 실시간 통신 브릿지 구동
-python3 gui/05_01_ros_firebase_bridge.py
-```
-
-#### **<PC 3: Arduino Conveyor Interface>**
-```bash
-# Terminal 1: 아두이노 직렬 통신 브릿지 구동
-python3 arduino/conveyor_sensor_bridge_FINAL.py
-
-# Terminal 2: 아두이노-ROS2 작업 관리 매니저 실행
-python3 arduino/task_controller_FINAL.py
-```
+### 🚨 [이슈 3] 임베디드-ROS2 통신 간 센서 토픽 신호 폭주 및 과부하
+* **현상**: 컨베이어에 물체가 도착했을 때 아두이노 센서가 '01(도착)' 신호를 연속적으로 과도하게 발행하여 토픽이 폭주하고 시스템 제어에 혼선이 발생함.
+* **원인 분석**: 인터럽트 처리가 결여된 임베디드 단에서 상태 체크 루프가 계속 돌며 동일 데이터를 필터링 없이 연속 발행함.
+* **해결 방법**: 중간 관리자 역할을 하는 Task Controller를 설계하여 수신된 신호를 곧바로 실행하지 않고 `is_running`과 같은 상태 플래그 기반 제어 도입. 로봇이 대기 상태일 때만 최초의 '01' 신호를 승인하고, 작업 중 유입되는 중복 신호는 원천적으로 무시하는 비동기 필터링 로직 구현.
+* **결과**: 불필요한 토픽 발행으로 인한 시스템 부하를 방지하고 통신 안정성을 향상시킴.
 
 ---
 
-## 7. 엔지니어링 이슈 및 Troubleshooting
-
-### 🚨 [이슈 1] 가감속 구간 관성력으로 인한 궤적 극초반의 토크 스파이크 오탐지
-* **현상**: 스캔 경로 진입 및 레이어 전환 직후, 가속 구간에서 발생하는 급격한 관성 부하로 인해 실시간 관절 토크가 임계치(1.7 Nm)를 초과하여 결함이 없음에도 불량(FAIL)으로 오진단되는 현상 발생.
-* **원인 분석**: 정적인 힘 제어가 아닌 고속 3D 원호 모션 특성상 모션 시작부에 발생하는 동적 과도응답(Transient Response) 토크가 정상 범위의 밴드를 크게 벗어남.
-* **해결 방법**: 각 레이어 스캔 모션이 기동하는 시점부터 1초간(20Hz 기준 20프레임 `IGNORE_START_FRAMES = 20`) 토크 스파이크 판정을 강제로 차단하는 **초기 안정화 필터링 알고리즘**을 추가 구현.
-* **결과**: 가속 구간의 관성 노이즈로 인한 불량 오진단을 완전히 차단하여 검사 신뢰도 **99.8%** 확보.
-
-### 🚨 [이슈 2] 단방향 대기 루프로 인한 ROS2 통신 차단 및 E-Stop 제어 불능
-* **현상**: 공정 실행 중 모션 완료 시점까지 단순 `time.sleep`을 동기적으로 사용해 대기하자, ROS2 큐의 이벤트 스핀(Spin)이 차단되어 웹 대시보드에서 발행한 비상정지(E-Stop)나 일시정지 명령이 수 초간 딜레이되거나 무시되는 안전사고 위험 발생.
-* **원인 분석**: 단일 스레드 구조에서 Blocking 대기 함수가 실행 루프를 점유하여 ROS2 통신 콜백 큐가 제때 비워지지 않음.
-* **해결 방법**: `time.sleep`을 0.1초 단위 루프로 세분화하고 대기 주기마다 `rclpy.spin_once(self, timeout_sec=0.01)`를 강제로 호출해 이벤트를 비워주는 **비차단 스마트 대기 함수(`wait_smart`)**를 개발하여 로봇 모션 중에도 지속해서 비동기 통신 채널을 오픈.
-* **결과**: 주행 제어 중 비상정지 및 일시정지 인터럽트 응답 레이턴시를 3초 이상에서 **35ms 이내**로 대폭 단축하여 국제 안전 규격을 충족함.
-
----
-
-## 8. 향후 개선 및 기대 효과
-* **안전성 강화**: 긴급 정지(Emergency Stop) 및 장애물 회피(H2R 모드) 로직의 정교화 및 로컬 세이프티 하드웨어 연동.
-* **확장성**: 투명 사출물 외에도 비전 센서 활용이 어려운 고반사 재질(금속 경면 등)의 표면 검수로 확장 가능.
-* **시스템 통합**: 개별 실행되는 여러 독립 스크립트를 통합하여 한 번에 실행해 주는 ROS2 Launch 파일 작성 예정.
+## 7. 결론 및 성과
+* 비전 시스템이라는 고정관념에서 벗어나, 로보틱스 특유의 물리적 접촉과 역학 데이터(Torque 센서)를 융합해 실무적인 엔지니어링 한계를 극복함.
+* 임베디드 단의 과부하 문제를 소프트웨어적인 상태 관리(Task Controller)로 해결해 내면서, S/W와 H/W를 아우르는 시스템 전체의 아키텍처 설계 능력을 확보함.
