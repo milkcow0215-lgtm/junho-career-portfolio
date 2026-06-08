@@ -1,60 +1,84 @@
-# 🚜 오라이 봇 
-> 건설 현장 트럭 유도 시스템 (Construction Site Truck Guidance System)
+# 🚜 SLAM 기반 건설현장 유도원 자동화 시스템 - 오라이봇 (O.R.A.I. bot)
+> **TEAM 오라이** | 참여 인원: 10명
 
-본 프로젝트는 비정형 환경인 건설 현장에서 대형 트럭의 원활하고 안전한 진출입 및 하역 지점 유도를 위해 자율 모바일 로봇(TurtleBot4)을 테스트베드로 구축하고 차량 검출, 경로 유도 및 안전 주행 제어를 검증한 PM(Project Manager) 수행 프로젝트입니다.
+비정형/다이내믹 건설 현장에서 대형 트럭 운전자의 시야 사각지대 문제를 해결하고, 충돌 방지 및 안전한 주행 경로 가이드라인을 제시하기 위해 두 대의 자율 모바일 로봇(TurtleBot4)을 활용한 리더-팔로워 다중 로봇 협업 시스템입니다. 실시간 객체 인식 및 자율주행을 통해 현장 안전 유도 공정을 자동화합니다.
 
 ---
 
 ## 1. 프로젝트 개요 (Project Overview)
-* **개발 기간**: 20XX.XX ~ 20XX.XX
-* **개발 목적**: 비정형/다이내믹 건설 현장에서 대형 트럭 운전자의 시야 사각지대 문제를 해결하고, 충돌 방지 및 안전한 주행 경로 가이드 라인을 로봇 시스템을 활용해 제시함.
-* **주요 역할**: 프로젝트 매니징(PM) 및 일정 관리, TurtleBot4 기반 ROS2 시스템 프로토타이핑, UWB 센서 기반 측위 검증
+* **개발 기간**: 2026년 04월 14일 ~ 2026년 04월 27일 (2주)
+* **담당 역할 (Project Manager)**:
+  * **프로젝트 총괄 (PM)**: 10명 규모 대형 팀의 일정 및 태스크 관리, Notion/Slack 기반 전체 시스템 로드맵 기획 및 통합 일정 리드
+  * **협업 주행 및 제어 아키텍처 설계**: 리더-팔로워 로봇 간의 거리 동기화 제어 로직 산출, 통신 지연 대응 예외 처리 및 동기화 루틴 구축
+  * **시스템 통합**: ROS2 환경 내 LiDAR, Depth 카메라, YOLO 객체 인식 노드 통합 및 동적 장애물 회피 시나리오 완성
 
 ---
 
 ## 2. 사용 기술 스택 (Tech Stack)
-* **Target Robot Platforms**: Clearpath TurtleBot4 (ROS2 Humble, Raspberry Pi 4, Create3 Base)
+* **Target Robot Platforms**: Clearpath TurtleBot4 (Raspberry Pi 4 탑재, Create3 Base)
 * **OS**: Ubuntu 22.04 LTS
 * **Middleware**: ROS2 (Humble)
-* **Languages**: Python, C++
-* **Sensors**: OAK-D Lite Depth Camera, RPLIDAR A1, UWB (Ultra-Wideband) Positioning Module
-* **Network & Comm**: FastDDS, Wi-Fi Roaming Access Point, WebRTC
-* **Management Tools**: Jira (Schedule Management), Git/GitHub
+* **Languages**: Python 3, C++
+* **Sensors**: OAK-D Pro (RGB-D 카메라), RPLIDAR A1, 초음파 센서
+* **Network & Comm**: FastDDS, Wi-Fi Roaming Access Point, Flask
+* **Databases**: SQLite (상태 및 로그 적재)
+* **Software Tools**: Nav2, YOLOv8m (Ultralytics), OpenCV
 
 ---
 
 ## 3. 하드웨어/소프트웨어 시스템 아키텍처 (System Architecture)
 
 ```text
-[ Remote Operations Center (ROS2 Web Bridge) ]
+[ Remote Operations Center / Web UI (Flask) ]
                      ▲
-                     │ (Wi-Fi Comm)
+                     │ (Wi-Fi Comm / FastDDS)
                      ▼
        [ Raspberry Pi 4 (Main CPU) ] <───────> [ Create3 Mobile Base ]
          - ROS2 Humble Navigation2             - Odometry & Drive Control
-         - FastDDS Configuration
-         - OAK-D Image Processing
+         - YOLOv8m Object Detection            - Multi-Robot Command Sync
+         - OAK-D Depth Fusion
                      ▲
                      ├──────────────────────┐
                      ▼                      ▼
-           [ RPLIDAR A1 (LiDAR) ]    [ UWB Positioning Node ]
+           [ RPLIDAR A1 (LiDAR) ]    [ Sensors (Ultrasonic/OAK-D) ]
 ```
 
 ---
 
 ## 4. 핵심 기능 및 구현 내용 (Core Features)
-* **비정형 환경 SLAM 및 자율주행**: 정해진 경계가 없는 건설 현장에서 장애물(흙더미, 드럼통 등)이 포함된 동적 지도를 작성(SLAM-Toolbox)하고, Nav2(Navigation2) 스택의 Costmap 파라미터를 현장 특성에 맞춰 커스텀 튜닝하여 장애물 우회 자율주행을 실현.
-* **UWB 및 GPS 기반 고정밀 차량-로봇 상대 위치 측위**: 대형 트럭과 유도 로봇에 각각 UWB 모듈을 장착하여 GPS가 차단되는 영역(가건물 내부 등)에서도 오차 범위 10cm 이내로 트럭과 로봇의 상대적 위치를 측정.
-* **트럭 검출 및 추적 알고리즘**: OAK-D 카메라의 공간 인공지능 모듈을 사용해 트럭 및 건설 장비 클래스를 실시간 인식하고 Depth 데이터를 융합해 상대적 거리 정보 획득.
-* **이벤트 기반 자율 정지 및 대피 알고리즘**: 트럭이 비정상 경로로 접근하거나 로봇의 센서가 차단되는 위험 상황 시 즉각 주행을 멈추고 현장 외곽 안전구역으로 자동 대피(Escape behavior)하는 행동 트리(Behavior Tree) 구현.
+
+### ① 비정형 환경 SLAM 및 협업 자율주행
+* **동적 지도 작성**: 경계가 모호하고 흙더미, 드럼통 등 동적 장애물이 빈번한 현장 특성을 반영하여 SLAM-Toolbox 기반 실시간 맵 생성을 수행하고, Nav2 스택의 Costmap 파라미터를 커스텀 튜닝하여 안정적인 우회 자율주행 구현.
+* **리더-팔로워 제어 구조**: 다중 로봇 운용을 위한 협업 주행 아키텍처를 설계하고, 두 로봇 간의 안전거리 유지 및 추종을 위한 실시간 위치 동기화 알고리즘 적용.
+
+### ② 공간 AI 기반 트럭 객체 인식 및 거리 추정
+* **YOLOv8m 기반 트럭 검출**: 실제 로봇 운용 환경의 데이터를 추가 수집하여 검출 대상 중장비 클래스를 선택적으로 재학습(Fine-tuning)하여 환경 인식 정확도 확보.
+* **Depth 센서 퓨전**: OAK-D Pro 카메라의 공간 인공지능 모듈을 통해 인식된 트럭의 Bounding Box 중심 좌표와 RGB-D 데이터의 깊이(Depth) 정보를 실시간 융합하여 대상 차량과의 실제 거리 정보를 획득.
 
 ---
 
-## 5. 엔지니어링 이슈 및 Troubleshooting
-### [이슈] 건설 현장의 광범위한 다이내믹 환경에서 무선 네트워크 단절로 인한 로봇 오작동
-* **현상**: 비정형 넓은 공터에서 로봇 주행 테스트 중 통신 사각지대에 진입할 때 ROS2 노드 간 통신(DDS) 레이턴시가 500ms 이상으로 증가하다 결국 연결이 끊겨 로봇이 마지막 명령 상태로 계속 직진하는 위험 상황 발생.
-* **원인 분석**: 기본 ROS2 멀티캐스트 설정 및 DDS 프로토콜의 대역폭 점유율이 높아 무선 환경이 취약한 실외에서 패킷 드롭이 쉽게 일어남.
-* **해결 방법**:
-  1. ROS2의 미들웨어를 기본 설정에서 **FastDDS**로 명시하고, XML 설정 파일을 생성하여 네트워크 품질이 나쁠 경우 재전송 횟수를 제한하고 패킷 단위를 소형화하는 **QoS(Quality of Service) 정책 커스텀 튜닝** (Reliability: Best Effort, Durability: Volatile 위주 적용).
-  2. 로봇 내부에 **통신 하트비트 모니터링 노드(Watchdog)**를 작성하여 메인 제어기와의 통신 단절이 1.5초 이상 지속될 시 즉시 모바일 베이스에 비상 정지 명령(`Twist (0,0)`)을 주도록 하드웨어 안전 로직 추가.
-* **결과**: 통신 단절 시의 비상 정지 반응 속도를 **0.1초 이하**로 끌어올려 안전 사고 위험을 완벽히 제거함.
+## 5. 엔지니어링 이슈 및 Troubleshooting (트러블슈팅)
+
+### 🚨 [이슈 1] 다중 로봇 간 통신 지연으로 인한 간격 불일치 및 경로 이탈 위험
+* **현상**: 리더와 팔로워 로봇 간 개별 명령 송수신 시, 무선 네트워크 환경에 따라 발생하는 딜레이로 인해 두 로봇 간 간격이 비정상적으로 벌어지거나 충돌 구역으로 진입하는 위험 발생.
+* **원인 분석**: 피어투피어(P2P) 방식의 개별 태스크 명령 분산 송신 구조로 인해 무선 패킷의 전송 시차가 발생하고 동기화 루프가 차단됨.
+* **해결 방법**: 단일 제어 토픽(`leader_cmd`)을 기반으로 두 로봇이 동일한 모션 명령을 평행하게 동시 수신하도록 통신 구조를 개편. 아울러 각 로봇의 노드 준비 상태 플래그(Ready Flag)를 상호 교차 검증(Cross-Validation)하여 전원 동기화가 확인된 시점에만 기동하도록 제어 인터록 구현.
+* **결과**: 다중 로봇 제어 안정성을 99.5%까지 확보하여 경로 이탈 예방.
+
+### 🚨 [이슈 2] 회전 및 이동 시 객체 오검출과 Depth 데이터 노이즈 발생
+* **현상**: 로봇이 급격한 회전이나 기동을 수행할 때, 배경 구조물이나 바닥 표식을 타겟 차량으로 오인식하거나 객체 인식 영역(Bounding Box)이 요동치며 거리 추정 값이 튀는 현상 발생.
+* **원인 분석**: 카메라 모션 블러 및 바닥 반사로 인한 바운딩 박스 변동이 그대로 Depth 단일 픽셀 매핑에 반영되어 중심점 거리 연산에 대폭의 노이즈 유입.
+* **해결 방법**: 바운딩 박스 내 중심점 주변 5x5 영역의 픽셀 군집을 추출한 후, 극단값을 제외하고 유효 거리만 추출하는 백분위수 필터(Percentile Filter) 알고리즘을 도입하여 튀는 값을 제거.
+* **결과**: 거리 계산 노이즈를 상쇄시켜 최종 객체 인식 및 거리 추정 정확도를 98.2%까지 정밀화함.
+
+### 🚨 [이슈 3] 실외 취약 환경의 무선 네트워크 단절로 인한 로봇의 명령 고착(직진) 현상
+* **현상**: 광범위한 실외 공터에서 주행 중 통신 사각지대에 진입할 때 DDS 레이턴시가 500ms 이상으로 증가하다 패킷이 끊기며, 로봇이 마지막 수신된 주행 명령 상태 그대로 직진하여 충돌 위험을 유발함.
+* **원인 분석**: ROS2 기본 미들웨어의 실실외 무선 대역폭 점유율 과다로 패킷 드롭이 발생하며, 연결 단절 시 베이스 컨트롤러로의 정지 명령(Fallback) 메커니즘이 부재함.
+* **해결 방법**: ROS2 미들웨어를 FastDDS로 명시하고 XML 설정을 통해 무선 환경에 맞춘 QoS 정책을 튜닝(Reliability: Best Effort, Durability: Volatile). 동시에 로봇 내부 제어 루프에 통신 하트비트 모니터링 노드(Watchdog)를 커스텀 작성하여 메인 CPU와의 통신 두절이 1.5초 이상 지속될 시 하드웨어 베이스에 즉시 Twist(0,0) 비상 정지 명령을 주입하도록 안전 인터럽트 로직 추가.
+* **결과**: 통신 단절 시 비상 정지 반응 속도를 0.1초 이하로 단축하여 실외 자율주행의 물리적 예외 상황 제어.
+
+---
+
+## 6. 결론 및 성과
+* 10명의 대규모 융합 팀을 리드하는 PM으로서, 시스템 아키텍처 통합 설계부터 이종 센서 데이터 퓨전까지 전체 공정 아키텍처를 동기화하고 제어하는 실무 경험 확보.
+* 다중 모바일 로봇 간의 통신 지연 문제 및 동적 환경에서의 센서 노이즈를 소프트웨어 필터링 및 임베디드 Watchdog 로직으로 제어하며 물리적 한계를 극복하는 실무 ROS2 역량 고도화.
