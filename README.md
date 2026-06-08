@@ -1,28 +1,33 @@
 # 🚀 Junho's Career & Portfolio Space
 
-Welcome! 이 저장소는 저의 **커리어 여정, 핵심 역량, 그리고 대표 프로젝트들**을 한눈에 볼 수 있도록 정리한 포트폴리오 공간입니다. 
+Welcome! 이 저장소는 로봇 공학 및 기계공학을 기반으로 하드웨어와 소프트웨어를 유기적으로 통합하고, 비정형 환경의 물리적 변수를 엔지니어링 적으로 해결하는 저의 핵심 역량과 대표 프로젝트들을 체계적으로 관리하는 공간입니다.
 
 ---
 
 ## 👨‍💻 About Me
+
 * **Name**: 양준호 (Junho Yang)
-* **Goal**: 비즈니스 가치를 창출하고, 견고하며 확장 가능한 아키텍처를 설계하는 소프트웨어 엔지니어입니다.
-* **Focus**: 백엔드 시스템 구축, 효율적인 알고리즘 설계 및 최적화, 데이터 기반의 실용적 솔루션 도출
+* **Goal**: 비즈니스 가치를 창출하고, HW-SW가 융합된 견고하며 확장 가능한 로봇 시스템 아키텍처를 설계하는 소프트웨어 엔지니어입니다.
+* **Focus**: ROS2 기반 로봇 아키텍처 설계, 시스템 통합, 제어 알고리즘 최적화 및 데이터 기반의 실용적 솔루션 도출
 
 ---
 
-## 🛠 Tech Stack
+## 🛠 Tech Stack & Engineering Skills
 
-### Languages & Frameworks
-* **Languages**: C++, Python, Java / Spring Boot, ROS2, FastAPI
-* **Database**: PostgreSQL, MySQL, Redis
-* **DevOps & Tools**: Docker, AWS, GitHub Actions, Modbus/TCP, Git
+| 구분 | 보유 스킬 및 프레임워크 |
+| :--- | :--- |
+| **Languages** | Python, C/C++, MATLAB |
+| **Frameworks & Middleware** | ROS2 (Humble/Foxy), FastAPI |
+| **AI / Machine Learning** | PyTorch, YOLOv8, Ollama (Qwen, Llama) |
+| **Environment & DevOps** | Ubuntu, Docker, Windows, Git |
+| **Hardware & Boards** | Raspberry Pi 4, ESP32, Arduino, Doosan M0609 |
+| **CAD & CAE Interpretation** | AutoCAD, Catia, Autodesk Fusion 360, ANSYS Mechanical |
 
 ---
 
 ## 📂 Project Directory Index
 
-이 워크스페이스는 다음과 같은 구조로 포트폴리오 프로젝트를 체계적으로 관리합니다.
+이 워크스페이스는 다음과 같은 구조로 프로젝트를 최신순으로 관리합니다. 각 폴더 내부의 `README.md`에서 상세한 시스템 아키텍처와 트러블슈팅 내역을 확인하실 수 있습니다.
 
 ```text
 C:\career-portfolio/
@@ -31,13 +36,13 @@ C:\career-portfolio/
 ├── .gitignore                          # Git 제외 규칙 설정 파일
 ├── .env                                # 로컬 환경 변수 설정 파일 (비공개)
 │
-├── 01_gear_assembly_robot_arm/         # Doosan M0609 Robot Arm Project
+├── 01_gear_assembly_robot_arm/         # 🤖 투명 사출물 결함 검수 및 로봇 자동화 공정 시스템
 │   └── README.md
-├── 02_construction_truck_guidance/     # TurtleBot4 Truck Guidance System PM Project
+├── 02_construction_truck_guidance/     # 🚜 SLAM 기반 건설현장 유도원 자동화 시스템 (오라이봇)
 │   └── README.md
-├── 03_autonomous_railway_robot/        # Autonomous Railway Robot Graduation Project
+├── 03_autonomous_railway_robot/        # 🚊 철도 유지보수 자동화를 위한 자율주행 결함 검출 로봇 설계
 │   └── README.md
-└── others/                             # Automated Trading & Notification Pipeline
+└── others/                             # 📈 자산 스크리닝 자동 매매 및 Gmail 취업 모니터링 파이프라인
     └── README.md
 ```
 
@@ -45,24 +50,24 @@ C:\career-portfolio/
 
 ## 🌟 Featured Projects
 
-### 1. [Doosan Robotics M0609 기어 조립 및 검사 시스템](./01_gear_assembly_robot_arm/)
-* **역할**: 로봇 암 제어 알고리즘 구현 (DRL 스크립트 작성), Modbus/TCP 연동 및 OpenCV 비전 검사 구현
-* **주요 성과**: 순응 제어 및 나선형 탐색 알고리즘을 도입하여 기어 조립 충돌 보호 정지 발생률을 0%로 단축
-* **Tech Stack**: Python, DRL, Modbus/TCP, OpenCV, Robotiq 2F-85, FLIR Camera
+### 1. 🤖 투명 사출물 결함 검수 및 로봇 자동화 공정 시스템 ([01_gear_assembly_robot_arm](./01_gear_assembly_robot_arm/))
+* **개요**: 비전 카메라의 한계를 극복하기 위해 두산 협동로봇(M0609)의 내장 토크 센서를 활용한 물리 표면 스캔 및 비전-프리 결함 감지 시스템
+* **핵심 구현**: 컴플라이언스(순응) 제어 알고리즘 적용 및 곡률 밀착 최적화, 3차원 스플라인 보간 기반 형상 편차 산출, 비동기 멀티스레딩 아키텍처 도입을 통한 통신 지연 제어
+* **Tech Stack**: Doosan M0609, ROS2, Arduino, Python, Firebase, Plotly.js, OpenCV
 
-### 2. [TurtleBot4 활용 건설 현장 트럭 유도 시스템](./02_construction_truck_guidance/)
-* **역할**: 프로젝트 매니징(PM) 및 일정 관리, TurtleBot4 기반 ROS2 시스템 프로토타이핑 및 UWB 측위 검증
-* **주요 성과**: 무선 네트워크 단절에 따른 Watchdog 및 FastDDS QoS 정책 커스텀 튜닝을 통해 실시간 비상 정지(0.1초 이내) 보장
-* **Tech Stack**: ROS2 (Humble), Python, C++, OAK-D Lite, RPLIDAR A1, UWB
+### 2. 🚜 SLAM 기반 건설현장 유도원 자동화 시스템 - 오라이봇 ([02_construction_truck_guidance](./02_construction_truck_guidance/))
+* **개요**: 비정형 건설 현장에서 중장비 충돌 예방을 위해 두 대의 TurtleBot4를 활용해 실시간 객체 인식 및 자율주행을 수행하는 다중 로봇 협업 시스템 (PM 수행)
+* **핵심 구현**: 단일 토픽 기반 리더-팔로워 주행 동기화 구조 설계, 백분위수 필터(Percentile Filter)를 통한 RGB-D 거리 계측 노이즈 상쇄, FastDDS QoS 튜닝 및 임베디드 Watchdog 안전 인터럽트 구축
+* **Tech Stack**: TurtleBot4, ROS2 (Humble), Nav2, YOLOv8m, OAK-D Pro, RPLIDAR A1, FastDDS
 
-### 3. [자율주행 철도 점검 로봇 시스템](./03_autonomous_railway_robot/)
-* **역할**: 자율주행 알고리즘 설계, LiDAR & Camera 센서 퓨전 구현, 로봇 제어 시스템 최적화
-* **주요 성과**: TensorRT FP16 양자화를 통한 YOLOv8 추론 속도 개선 (8 FPS -> 32 FPS) 및 실시간 안전 주행 실현
-* **Tech Stack**: ROS2 (Foxy), C++, Python, LiDAR, RealSense Camera, YOLOv8, STM32
+### 3. 🚊 철도 유지보수 자동화를 위한 자율주행 결함 검출 로봇 설계 ([03_autonomous_railway_robot](./03_autonomous_railway_robot/))
+* **개요**: 레일 표면 균열과 궤간 틀림 탐지를 위해 다중 센서 피드백 루프를 구축한 소형 무인 자율주행 로봇 시스템 (팀장 수행)
+* **핵심 구현**: ANSYS 유한요소/진동 해석 및 가우시안 프로세스 회귀(GPR) 연동을 통한 기구부 진동 오차 최소화 설계, 아두이노 기반 다중 센서 타스크 제어 및 단계별 교차 검증 디버깅
+* **Tech Stack**: Arduino Mega 2560, MPU6050, DC Motor & Encoder, ANSYS Mechanical, Fusion 360, Python
 
-### 4. [글로벌 자산 스크리닝 자동 매매 및 Gmail 취업 모니터링 파이프라인](./others/)
-* **역할**: 실시간 데이터 수집 및 이메일 파싱 파이프라인 설계, 투자 전략 구현, 통합 모니터링 대시보드 구축
-* **주요 성과**: WebSocket 실시간 스트리밍 도입 및 비동기 API Rate Limiter 설정을 통한 API 제한 방지, Gmail API 기반의 채용 공고 실시간 파이프라인 구축
+### 4. 📈 글로벌 자산 스크리닝 자동 매매 및 Gmail 취업 모니터링 파이프라인 ([others](./others/))
+* **개요**: 데이터 수집, 가상 예외 처리 로직 및 외부 API 연동 인프라 역량을 다각화한 데이터 자동화 파이프라인 (개인 사이드 프로젝트)
+* **핵심 구현**: WebSocket 실시간 스트리밍 및 비동기 API Rate Limiter 설정을 통한 제한 방지, Gmail API 기반 채용 공고 실시간 파싱 및 텔레그램 알림 자동화
 * **Tech Stack**: Python, FastAPI, PostgreSQL, Redis, Streamlit, Upbit API, Telegram Bot API, Gmail API
 
 ---
