@@ -2,6 +2,19 @@
 .env
 .env.local
 .env.*.local
+token.json
+credentials.json
+
+# Local Data & State Files
+sent_jobs.json
+portfolio.json
+today_order.json
+data/
+plots/
+
+# Python Cache
+__pycache__/
+*.pyc
 
 # IDEs and Editors
 .vscode/
@@ -22,3 +35,4 @@ db.properties
 logs/
 tmp/
 temp/
+
