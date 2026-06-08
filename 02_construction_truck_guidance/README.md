@@ -1,4 +1,5 @@
-# 🚜 건설 현장 트럭 유도 시스템 (Construction Site Truck Guidance System)
+# 🚜 오라이 봇 
+> 건설 현장 트럭 유도 시스템 (Construction Site Truck Guidance System)
 
 본 프로젝트는 비정형 환경인 건설 현장에서 대형 트럭의 원활하고 안전한 진출입 및 하역 지점 유도를 위해 자율 모바일 로봇(TurtleBot4)을 테스트베드로 구축하고 차량 검출, 경로 유도 및 안전 주행 제어를 검증한 PM(Project Manager) 수행 프로젝트입니다.
 
