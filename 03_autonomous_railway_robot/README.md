@@ -28,14 +28,10 @@
 ```text
 C:\career-portfolio\03_autonomous_railway_robot/
 ├── README.md                          # 👈 현재 파일
-├── design/
-│   ├── cad/                           # Fusion 360 기반 기구부 3D 모델링 파일 (.step, .f3d)
-│   └── cae/                           # ANSYS Mechanical 진동 및 구조 해석 프로젝트 파일
 └── src/
-    ├── main_control/
-    │   └── main_control.ino           # Arduino Mega 2560 메인 자율주행 및 센서 제어 소스 코드
-    └── analysis/
-        └── gpr_optimization.py        # 하드웨어 최적화를 위한 가우시안 프로세스 회귀 분석 스크립트
+    └── main_control/
+        ├── TrackRobot_Header.h        # 시스템 핀 맵 및 제어 임계치 정의 헤더 파일
+        └── main_control.ino           # 아두이노 메가 2560 제어 메인 소스 코드
 ```
 
 ---
