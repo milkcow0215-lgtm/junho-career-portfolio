@@ -25,7 +25,7 @@
 ## 3. 디렉토리 및 파일 구조 (Directory Structure)
 
 ```text
-C:\career-portfolio\01_gear_assembly_robot_arm\src\cobot1/
+C:\career-portfolio\ROKEY_Work\01_gear_assembly_robot_arm\src\cobot1/
 ├── package.xml                     # ROS2 패키지 설정 파일
 ├── setup.py                        # 파이썬 배포/설치 설정 파일
 ├── setup.cfg                       # ROS2 빌드 환경 파일

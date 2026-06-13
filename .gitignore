@@ -36,3 +36,35 @@ logs/
 tmp/
 temp/
 
+# CAD Files
+*.CATDrawing
+*.CATPart
+*.CATProduct
+*.dwg
+*.dxf
+*.step
+*.stp
+*.iges
+*.igs
+
+# Firebase Secret Keys
+10_rokey_bootcamp/03_rocal_vlm_v1/Code_LLM/source/*.json
+
+# Exclusion rules for ROKEY cooperative project 3 (v2)
+# Ignore everything in rocal_vlm_v2 by default
+10_rokey_bootcamp/04_rocal_vlm_v2/*
+
+# Except C-3 cooperative project 3 folder structure
+!10_rokey_bootcamp/04_rocal_vlm_v2/C-3_협동3_홍성욱_양준호_안교진_최찬우_송종진/
+!10_rokey_bootcamp/04_rocal_vlm_v2/C-3_협동3_홍성욱_양준호_안교진_최찬우_송종진/**
+
+# Ignore all files under C-3 folder by default
+10_rokey_bootcamp/04_rocal_vlm_v2/C-3_협동3_홍성욱_양준호_안교진_최찬우_송종진/**/*
+
+# Do not ignore subdirectories themselves (enables traversing)
+!10_rokey_bootcamp/04_rocal_vlm_v2/C-3_협동3_홍성욱_양준호_안교진_최찬우_송종진/**/
+
+# Allow only .py and .txt files under C-3 folder
+!10_rokey_bootcamp/04_rocal_vlm_v2/C-3_협동3_홍성욱_양준호_안교진_최찬우_송종진/**/*.py
+!10_rokey_bootcamp/04_rocal_vlm_v2/C-3_협동3_홍성욱_양준호_안교진_최찬우_송종진/**/*.txt
+

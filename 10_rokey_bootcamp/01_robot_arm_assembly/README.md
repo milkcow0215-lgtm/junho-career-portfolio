@@ -25,7 +25,7 @@
 ## 3. 디렉토리 및 파일 구조 (Directory Structure)
 
 ```text
-C:\career-portfolio\01_gear_assembly_robot_arm/
+C:\career-portfolio\ROKEY_Work\01_gear_assembly_robot_arm/
 ├── README.md                          # 👈 현재 파일
 └── src/
     └── cobot1/                        # 메인 ROS2 패키지
