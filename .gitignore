@@ -48,9 +48,9 @@ temp/
 *.igs
 
 # Firebase Secret Keys
-10_rokey_bootcamp/03_rocal_vla_v1/Code_LLM/source/*.json
+10_rokey_bootcamp/03_local_vla_v1/Code_LLM/source/*.json
 
-# Ignore everything in rocal_vla_v2 by default
+# Ignore everything in local_vla_v2 by default
 
 # Except C-3 cooperative project 3 folder structure
 
@@ -61,11 +61,11 @@ temp/
 # Allow only .py and .txt files under C-3 folder
 
 # Exclusion rules for ROKEY cooperative project 3 (v2) - Flattened
-10_rokey_bootcamp/04_rocal_vla_v2/**/*.zip
-10_rokey_bootcamp/04_rocal_vla_v2/**/*.usd
-10_rokey_bootcamp/04_rocal_vla_v2/**/*.urdf
-10_rokey_bootcamp/04_rocal_vla_v2/**/*.mp4
-10_rokey_bootcamp/04_rocal_vla_v2/**/*.pptx
-10_rokey_bootcamp/04_rocal_vla_v2/**/*.pt
-10_rokey_bootcamp/04_rocal_vla_v2/**/*.png
-10_rokey_bootcamp/04_rocal_vla_v2/**/*.jpg
+10_rokey_bootcamp/04_local_vla_v2/**/*.zip
+10_rokey_bootcamp/04_local_vla_v2/**/*.usd
+10_rokey_bootcamp/04_local_vla_v2/**/*.urdf
+10_rokey_bootcamp/04_local_vla_v2/**/*.mp4
+10_rokey_bootcamp/04_local_vla_v2/**/*.pptx
+10_rokey_bootcamp/04_local_vla_v2/**/*.pt
+10_rokey_bootcamp/04_local_vla_v2/**/*.png
+10_rokey_bootcamp/04_local_vla_v2/**/*.jpg

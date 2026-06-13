@@ -42,8 +42,8 @@ C:\Anti_workspace/
 ├── 10_rokey_bootcamp/                 # 🎓 ROKEY Bootcamp 관련 프로젝트
 │   ├── 01_robot_arm_assembly/         # 🤖 투명 사출물 결함 검수 및 로봇 자동화 공정 시스템
 │   ├── 02_turtlebot_guidance/         # 🚜 SLAM 기반 건설현장 유도원 자동화 시스템 (오라이봇)
-│   ├── 03_rocal_vla_v1/               # 🦾 로컬 VLA 제어 시스템 (버전 1)
-│   ├── 04_rocal_vla_v2/               # 🦾 로컬 VLA 제어 시스템 (버전 2)
+│   ├── 03_local_vla_v1/               # 🦾 로컬 VLA 제어 시스템 (버전 1)
+│   ├── 04_local_vla_v2/               # 🦾 로컬 VLA 제어 시스템 (버전 2)
 │   └── 99_archive/                    # 📂 보관된 레거시 스크립트 및 테스트 파일들
 │
 ├── 20_my_projects/                    # 📂 개인/학부 프로젝트
