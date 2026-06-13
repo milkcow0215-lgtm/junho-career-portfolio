@@ -1,0 +1,59 @@
+{
+    "version": "1.0",
+    "file_records": [
+        {
+            "source_url": "/home/rokey/dev_ws/issac_sim/assets/Collected_exex/omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/5.1/Isaac/Materials/Base/Metals/Aluminum_Anodized.mdl",
+            "source_hash": "5f608415962288aca5e519061420cb72c17e1fef",
+            "target_url": "./issac_sim/assets/Collected_exex/omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/5.1/Isaac/Materials/Base/Metals/Aluminum_Anodized.mdl",
+            "target_hash": "bf127629604e7c208d4d11c55aa62d65ab47e12b"
+        },
+        {
+            "source_url": "/home/rokey/dev_ws/issac_sim/assets/Collected_exex/omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/5.1/Isaac/Materials/Base/Metals/Aluminum_Cast.mdl",
+            "source_hash": "fd86936afc98f5ffb9b5ec697f4fe11642381708",
+            "target_url": "./issac_sim/assets/Collected_exex/omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/5.1/Isaac/Materials/Base/Metals/Aluminum_Cast.mdl",
+            "target_hash": "d6b838327199925c6cf203b2a9f5825da04a8afd"
+        },
+        {
+            "source_url": "/home/rokey/dev_ws/issac_sim/assets/Collected_exex/omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/5.1/Isaac/Materials/Base/Plastics/Plastic_ABS.mdl",
+            "source_hash": "e12b745a786882b882cb49cb756567bd468b9a67",
+            "target_url": "./issac_sim/assets/Collected_exex/omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/5.1/Isaac/Materials/Base/Plastics/Plastic_ABS.mdl",
+            "target_hash": "af8fc5c4bd2c1722a5335284d231112a6bb7e511"
+        },
+        {
+            "source_url": "/home/rokey/dev_ws/issac_sim/assets/Collected_exex/omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/5.1/Isaac/Materials/Base/Metals/Aluminum_Cast/Aluminum_Cast_BaseColor.png",
+            "source_hash": "d3e656cb44537e9e7faa1f32b9298a1104e06392",
+            "target_url": "./issac_sim/assets/Collected_exex/omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/5.1/Isaac/Materials/Base/Metals/Aluminum_Cast/Aluminum_Cast_BaseColor.png",
+            "target_hash": "9f993b11480a4dca1b2e464dd21f3ade13df9c48"
+        },
+        {
+            "source_url": "/home/rokey/dev_ws/issac_sim/assets/Collected_exex/omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/5.1/Isaac/Materials/Base/Metals/Aluminum_Anodized/Aluminum_Anodized_BaseColor.png",
+            "source_hash": "d6d5d481b834b5666ee02e73a806ffdb7b36cc9a",
+            "target_url": "./issac_sim/assets/Collected_exex/omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/5.1/Isaac/Materials/Base/Metals/Aluminum_Anodized/Aluminum_Anodized_BaseColor.png",
+            "target_hash": "bba1247b6bfcc846a1f1a83ae154b8375c5a9506"
+        },
+        {
+            "source_url": "/home/rokey/dev_ws/issac_sim/assets/Collected_exex/omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/5.1/Isaac/Materials/Base/Metals/Aluminum_Cast/Aluminum_Cast_ORM.png",
+            "source_hash": "6b9a9ea6cdb4266fb8f7aae78dd8eb6e0c6822a2",
+            "target_url": "./issac_sim/assets/Collected_exex/omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/5.1/Isaac/Materials/Base/Metals/Aluminum_Cast/Aluminum_Cast_ORM.png",
+            "target_hash": "1f386b4ab36ced98d865b0f30849cb99d37affd0"
+        },
+        {
+            "source_url": "/home/rokey/dev_ws/issac_sim/assets/Collected_exex/omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/5.1/Isaac/Materials/Base/Metals/Aluminum_Anodized/Aluminum_Anodized_ORM.png",
+            "source_hash": "6f7be205f6fc92302c89bfa55f7bcff7c9217ad1",
+            "target_url": "./issac_sim/assets/Collected_exex/omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/5.1/Isaac/Materials/Base/Metals/Aluminum_Anodized/Aluminum_Anodized_ORM.png",
+            "target_hash": "785e135d0332de4b1967f44235da454669f70716"
+        },
+        {
+            "source_url": "/home/rokey/dev_ws/issac_sim/assets/Collected_exex/omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/5.1/Isaac/Materials/Base/Metals/Aluminum_Cast/Aluminum_Cast_N.png",
+            "source_hash": "1ea7ca1299772b5267618d5db2ed7c32d01d39e8",
+            "target_url": "./issac_sim/assets/Collected_exex/omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/5.1/Isaac/Materials/Base/Metals/Aluminum_Cast/Aluminum_Cast_N.png",
+            "target_hash": "54c6f687b9868f183566d803cd0c4d2dc7e4fb80"
+        },
+        {
+            "source_url": "/home/rokey/dev_ws/issac_sim/assets/Collected_exex/omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/5.1/Isaac/Materials/Base/Metals/Aluminum_Anodized/Aluminum_Anodized_Normal.png",
+            "source_hash": "5e9a6f16b9430c4ba8060af4e4264adaa4be4391",
+            "target_url": "./issac_sim/assets/Collected_exex/omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/5.1/Isaac/Materials/Base/Metals/Aluminum_Anodized/Aluminum_Anodized_Normal.png",
+            "target_hash": "2e6bae4334b70f17479f82a05c40c30f874a3d67"
+        }
+    ]
+}

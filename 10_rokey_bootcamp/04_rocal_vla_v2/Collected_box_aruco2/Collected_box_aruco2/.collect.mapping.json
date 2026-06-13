@@ -1,0 +1,65 @@
+{
+    "version": "1.0",
+    "file_records": [
+        {
+            "source_url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/5.1/Isaac/Environments/Simple_Warehouse/Materials/Textures/T_CardBoxC_D.png",
+            "source_hash": "c111d071bb1019c51fa43a5e3d8d92b40a8a1c39",
+            "target_url": "./omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/5.1/Isaac/Environments/Simple_Warehouse/Materials/Textures/T_CardBoxC_D.png",
+            "target_hash": "37b6f43769286dac3b253a0bb4c9d458f2597e82"
+        },
+        {
+            "source_url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/5.1/Isaac/Environments/Simple_Warehouse/Materials/Textures/T_CardBoxC_N.png",
+            "source_hash": "9751dd13a3509c53a27d8eeb8f7630ea73f77f42",
+            "target_url": "./omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/5.1/Isaac/Environments/Simple_Warehouse/Materials/Textures/T_CardBoxC_N.png",
+            "target_hash": "6336bbe60ea1e37afad1e36bb4bd4a263b2095bb"
+        },
+        {
+            "source_url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/5.1/Isaac/Environments/Simple_Warehouse/Materials/Textures/T_CardBoxC_ORM.png",
+            "source_hash": "101f2a052ecae45f6ca1737bbe61f7b20e39d838",
+            "target_url": "./omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/5.1/Isaac/Environments/Simple_Warehouse/Materials/Textures/T_CardBoxC_ORM.png",
+            "target_hash": "f0f0015aee3f5a21fca75ea5f5a2203dae7741c8"
+        },
+        {
+            "source_url": "/home/rokey/dev_ws/issac_sim/aruco_marker_6x6/aruco_id0.png",
+            "source_hash": "9a8be4bbdf574d3ff23c36175f73e0326d00bbea",
+            "target_url": "./dev_ws/issac_sim/aruco_marker_6x6/aruco_id0.png",
+            "target_hash": "bd955f2d2425d39c5fefbcf07dab4c3ac678a26b"
+        },
+        {
+            "source_url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/5.1/Isaac/Environments/Simple_Warehouse/Materials/MI_LampCeilingA.mdl",
+            "source_hash": "2dcf8853388db28bd642022b67d9cd08180cc927",
+            "target_url": "./omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/5.1/Isaac/Environments/Simple_Warehouse/Materials/MI_LampCeilingA.mdl",
+            "target_hash": "3a37b9710111744df6ff513892d55cab64ee4540"
+        },
+        {
+            "source_url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/5.1/Isaac/Environments/Simple_Warehouse/Materials/Textures/T_Floor_01_N.png",
+            "source_hash": "e3e3dddcce3ca7484bae9c672aa5c89b35c95ece",
+            "target_url": "./omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/5.1/Isaac/Environments/Simple_Warehouse/Materials/Textures/T_Floor_01_N.png",
+            "target_hash": "d9df54b855fec08bf876b3720b2b69c18695279b"
+        },
+        {
+            "source_url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/5.1/Isaac/Environments/Simple_Warehouse/Materials/Textures/T_Floor_01_D.png",
+            "source_hash": "f05f28604df9477c2667a81bd52b1fd857361178",
+            "target_url": "./omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/5.1/Isaac/Environments/Simple_Warehouse/Materials/Textures/T_Floor_01_D.png",
+            "target_hash": "2e6ca67a049c26decd412ee39fb4a1125dbe7969"
+        },
+        {
+            "source_url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/5.1/Isaac/Environments/Simple_Warehouse/Materials/Textures/Alum_Anodized_roughness.png",
+            "source_hash": "4c556a400cb21ff2704ec582c7bdad3848bb1cfe",
+            "target_url": "./omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/5.1/Isaac/Environments/Simple_Warehouse/Materials/Textures/Alum_Anodized_roughness.png",
+            "target_hash": "2f9426dbb3bafc90776516eb8deed810ed5ff9bd"
+        },
+        {
+            "source_url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/5.1/Isaac/Environments/Simple_Warehouse/Materials/OmniUe4Function.mdl",
+            "source_hash": "c1ec0401aebbf6908480c070cc43dfcc40a9bd51",
+            "target_url": "./omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/5.1/Isaac/Environments/Simple_Warehouse/Materials/OmniUe4Function.mdl",
+            "target_hash": "5ea66ba54d43a19962511a65e40c8cdd32ec6448"
+        },
+        {
+            "source_url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/5.1/Isaac/Environments/Simple_Warehouse/Materials/OmniUe4Base.mdl",
+            "source_hash": "331ab4a83c96157c0f172dcad1a20aacd7be77ca",
+            "target_url": "./omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/5.1/Isaac/Environments/Simple_Warehouse/Materials/OmniUe4Base.mdl",
+            "target_hash": "009b8861c96c8cc550ca494085b56fdc60ccb1ea"
+        }
+    ]
+}
